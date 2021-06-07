@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import ViteComponents from 'vite-plugin-components'
+import ViteComponents, { kebabCase } from 'vite-plugin-components'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,11 +20,12 @@ export default defineConfig({
       customComponentResolvers: [
         (name) => {
           if (name.match(/^A[A-Z]/)) { // Ant Design Vue
-            const partialName = name.slice(1)
+            const importName = name.slice(1)
+            const dirName = kebabCase(importName)
             return { 
-              importName: partialName, 
+              importName, 
               path: 'ant-design-vue/es',
-              sideEffects: `ant-design-vue/es/${partialName}/style`,
+              sideEffects: `ant-design-vue/es/${dirName}/style`,
             }
           } 
         }

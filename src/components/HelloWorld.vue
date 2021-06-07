@@ -9,6 +9,10 @@
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
 
+  <a-date-picker v-model:value="date" />
+
+  <br><br>
+
   <a-button type="primary" @click="state.count++">
     Ant Button: {{ state.count }}
   </a-button>
@@ -20,13 +24,14 @@
 </template>
 
 <script setup>
-import { defineProps, reactive } from 'vue'
+import { defineProps, reactive, ref } from 'vue'
 
 defineProps({
   msg: String
 })
 
 const state = reactive({ count: 0 })
+const date = ref()
 </script>
 
 <style scoped>
